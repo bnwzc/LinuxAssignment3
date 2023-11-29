@@ -1,8 +1,9 @@
 # LinuxAssignment3
 ## Starting from a Fresh Debian 12 server on digitalocean
 - Create an SSH key pair
-- Creating a DO account and your first droplet
-
+- Create a DO account and your first droplet
+- Addi your SSH key to your DigitalOcean account
+- Connect to your new droplet using your ssh key
 ## Create a new regular user
 - Create a new user
 ```
