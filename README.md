@@ -42,7 +42,14 @@ ssh -i path-to-your-key user-name@your_ip
 ```
 sudo vim /etc/ssh/sshd_config
 ```
-- Find the line that "PermitRootLogin yes" and change it to "PermitRootLogin no"
+- Find the line that
+```
+PermitRootLogin yes
+```
+- and change it to
+```
+PermitRootLogin no
+```
 - Test that you can no longer connect to your server as root
 ```
 ssh -i path-to-your-key root@root_ip
