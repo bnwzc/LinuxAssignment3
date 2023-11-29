@@ -28,6 +28,13 @@ sudo cp -R /root/.ssh /home/user_name/
 ```
 sudo chown -R <user-name>:<user-name> /home/user_name/.ssh
 ```
+- Test that you can connect to your server with your new regular user
+```
+ssh -i path-to-your-key user_name@your_ip
+```
 ## Prevent the root user from connecting to the server via SSH
+- Edit ssh configuration so that the root user can no longer connect to the server via ssh
+- The file we are looking for is the sshd_config file
+- 
 ## Install nginx
 ## Configure nginx to serve a sample website
