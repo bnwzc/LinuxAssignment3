@@ -34,7 +34,14 @@ ssh -i path-to-your-key user_name@your_ip
 ```
 ## Prevent the root user from connecting to the server via SSH
 - Edit ssh configuration so that the root user can no longer connect to the server via ssh
-- The file we are looking for is the sshd_config file
-- 
+- The file we are looking for is the /etc/ssh/sshd_config file
+```
+sudo vim /etc/ssh/sshd_config
+```
+- Find the line that "PermitRootLogin yes" and change it to "PermitRootLogin no"
+- Test that you can no longer connect to your server as root
+```
+ssh -i path-to-your-key root@root_ip
+```
 ## Install nginx
 ## Configure nginx to serve a sample website
