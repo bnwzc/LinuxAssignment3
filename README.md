@@ -1,5 +1,8 @@
 # LinuxAssignment3
 ## Starting from a Fresh Debian 12 server on digitalocean
+- Create an SSH key pair
+- Creating a DO account and your first droplet
+
 ## Create a new regular user
 - Create a new user
 ```
@@ -22,15 +25,15 @@ sudo usermod -s /bin/bash <user-name>
 ### User can access the server via SSH
 - Copy the .ssh directory from the root users home directory to the new users home directory (including any files in the directory).
 ```
-sudo cp -R /root/.ssh /home/user_name/
+sudo cp -R /root/.ssh /home/user-name/
 ```
 - Change ownership of the directory, and files in the directory so that the copy in your new users directory is owned by the new user and the new users primary group
 ```
-sudo chown -R <user-name>:<user-name> /home/user_name/.ssh
+sudo chown -R <user-name>:<user-name> /home/user-name/.ssh
 ```
 - Test that you can connect to your server with your new regular user
 ```
-ssh -i path-to-your-key user_name@your_ip
+ssh -i path-to-your-key user-name@your_ip
 ```
 ## Prevent the root user from connecting to the server via SSH
 - Edit ssh configuration so that the root user can no longer connect to the server via ssh
