@@ -57,11 +57,11 @@ sudo cp -r /root/.ssh /home/<user-name>/
 ```
 2. Change ownership of the directory, and files in the directory so that the copy in your new users directory is owned by the new user and the new users primary group
 ```
-sudo chown -R <user-name>:<user-name> /home/user-name/.ssh/
+sudo chown -R <user-name>:<user-name> /home/<user-name>/.ssh/
 ```
 3. Exit the root and test that you can connect to your server with your new regular user
 ```
-ssh -i path-to-your-key user-name@your_ip
+ssh -i path-to-your-key <user-name>@your_ip
 ```
 ## Prevent the root user from connecting to the server via SSH
 1. Edit ssh configuration so that the root user can no longer connect to the server via ssh. The file we are looking for is the /etc/ssh/sshd_config file
@@ -103,7 +103,14 @@ sudo systemctl start nginx
 sudo systemctl status nginx
 ```
 ## Configure nginx to serve a sample website
-1. Create a new <my-site> directory in /var/www and then create the sample webpage index.html document in the <my-site> directory.
+1. Create a new directory which is called my-site in /var/www
+```
+sudo mkdir -p /var/www/my-site
+```
+2. Create the sample webpage index.html document in the my-site directory.
+```
+sudo vim /var/www/my-site/index.html
+```
 ```
 # Sample Page
 <!DOCTYPE html>
@@ -130,14 +137,14 @@ sudo systemctl status nginx
 </body>
 </html>
 ```
-2. Configuring a server block
-Create a new file <my-file> (name doesn't matter) in /etc/nginx/sites-available and enter the nginx config below into it.
+3. Configuring a server block
+Create a new file my-file in /etc/nginx/sites-available and enter the nginx config below into it.
 ```
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	
-	root /var/www/<my-site>;
+	root /var/www/my-site;
 	
 	index index.html index.htm index.nginx-debian.html;
 	
@@ -150,8 +157,26 @@ server {
 	}
 }
 ```
-3. Create a symbolic link
+4. Create a symbolic link
 create a symbolic link to your new config file in /etc/nginx/sites-enabled
 ```
-sudo ln -s /etc/nginx/sites-available/<my-file> /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/my-file /etc/nginx/sites-enabled/
 ```
+5. Delete the duplicated link
+Delete the duplicated link in /etc/nginx/sites-enabled
+```
+sudo unlink /etc/nginx/sites-enabled/default
+```
+6. Test your nginx configurations
+```
+sudo nginx -t
+```
+7. Restart your nginx server
+```
+sudo systemctl restart nginx
+```
+8. Send an HTTP GET request (replace your-ip-address)
+```
+curl <your-ip-address>
+```
+Then you can go to your ip address to see the page.
