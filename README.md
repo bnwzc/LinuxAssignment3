@@ -5,7 +5,7 @@
 ```
 mkdir .ssh
 ```
-2. Then create your new ssh key pair, run this command in your terminal.
+2. Then create the ssh key pair, run this command in your terminal.
 ```
 ssh-keygen -t ed25519 -f .ssh/do-key -C "your-email-address"
 ```
@@ -36,16 +36,16 @@ In your terminal, run this command. The ip address is on your Droplet in DO. (Yo
 ssh -i path-to-your-key root@your-ip
 ```
 ## Create a new regular user
-1. Create a new user, the user has bash as login shell and has a home directory.
+1. Create a new user, the user has bash as login shell with a home directory.
 ```
 useradd -ms /bin/bash <user-name>
 ```
-2. Set the password
+2. Set the password for the new user
 ```
 sudo passwd <user-name>
 ```
 ### User can perform administrative tasks
-Add the user to the sudo group to allow them to use sudo in Debian
+Add the user to the sudo group to perform adminstrative tasks.
 ```
 sudo usermod -aG sudo <user-name>
 ```
@@ -76,11 +76,11 @@ and change it to
 ```
 PermitRootLogin no
 ```
-4. Save the file and restart the ssh service. We will look at services and systemctl in another class. You can do this with the following command:
+3. Save the file and restart the ssh service. You can do this with the following command:
 ```
 sudo systemctl restart ssh.service
 ```
-5. Test that you can no longer connect to your server as root
+4. Test that you can no longer connect to your server as root
 ```
 ssh -i path-to-your-key root@root_ip
 ```
